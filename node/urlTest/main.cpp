@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
     char buffer[BUFFERSIZE];
     struct sockaddr_in serveraddr;
     int sock;
-    int data[20]= {30,27,32,25,23,31,23,24,26,24,20,27,22,25,23,21,23,24,26,24};
-    for(int i=0; i<20; i++)
+    int data[10]= {30,27,32,25,23,31,23,24,26,24};
+    for(int i=0; i<10; i++)
         cout << "data is " << data[i]<< endl;
     string sensorData= "<reading><time>11.00</time><temperature>46</temperature></reading>";
     WSADATA wsaData;
@@ -40,13 +40,12 @@ int main(int argc, char *argv[])
     request+="Accept-Charset: utf-8\r\n";
     request+="\r\n";
     int count =0;
-    while(count<20)
+    while(count<10)
     {
-        string sensorData = /*IntToString*/"<reading><time>11.00</time><temperature>"+IntToString(data[count])+"</temperature></reading>";
+        string sensorData = /*IntToString"<reading><time>11.00</time><temperature>"+*/IntToString(data[count])+",";//</temperature></reading>";
         cout << "sensordata is " << sensorData<< endl;
 
-        //"<reading><time>10:00</time><temperature>30</temperature></reading>";
-        //init winsock
+              //init winsock
         if (WSAStartup(MAKEWORD(2, 0), &wsaData) != 0)
             die_with_wserror("WSAStartup() failed");
 
@@ -81,7 +80,7 @@ int main(int argc, char *argv[])
         }
 
         //display response
-        cout << response << endl;
+        cout <<"The response is: "<< response << endl;
 
         //disconnect
         closesocket(sock);

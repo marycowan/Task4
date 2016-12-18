@@ -46,11 +46,37 @@ function handle_incoming_request (req, res) {
 
 		}
 			console.log(readings);
-			res.writeHead(200, { "Content-Type" : "application/text" });
-			res.end(readings); 
-		});
-	}
+	/*		var array = readings;
+array = array.toString('ascii',0,array.length);
+	array = array.split(",");
+			for(i in array)
+			{
+			console.log(array[i]);
+			var arraytxt = [];
+			 arraytxt[i] = '"time":'+'"'+array[i]+'"';
+			console.log (" arraytxt i is :"+arraytxt[i]+"\n");
+					// Tried to convert to name value pairs-didn't go well..
+		
+			var sensorText='';
+			sensorText += arraytxt[i];
+			}
+//sensorText = '{+sensorText+}';				//took out for a while
+	var obj = JSON.parse(sensorText);
+
+    res.writeHead(200, { "Content-Type" : "application/json" });
+
+
+    res.end(JSON.stringify(obj));//**********************************
+				// Tried to convert to name value pairs-didn't go well..
+
+   });
+
 }
+*/res.writeHead(200, { "Content-Type" : "application/text" });
+								res.end(readings);
+});
+}
+}						
 
 function write_sensor_data(readingsToWrite) {
 
